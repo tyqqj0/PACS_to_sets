@@ -26,7 +26,7 @@ def copyd(inputdir, outputdir, ratios):
         for label in os.listdir(style_dir):
             print("Copying {} of {}...".format(label, style))
             label_dir = os.path.join(style_dir, label)
-            output_label_dir = os.path.join(output_dir, label)
+            output_label_dir = os.path.join(outputdir, label)
             if not os.path.exists(output_label_dir):
                 os.makedirs(output_label_dir)
 
