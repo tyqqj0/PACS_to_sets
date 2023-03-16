@@ -12,8 +12,8 @@ styles = ["art_painting", "cartoon", "photo", "sketch"]
 
 def copyd(inputdir, outputdir, ratios):
     # 创建输出目录
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    if not os.path.exists(outputdir):
+        os.makedirs(outputdir)
 
     # 遍历每个标签文件夹，并将符合比例的照片复制到输出目录中
     for style in styles:
