@@ -8,7 +8,7 @@ output_dir = "/content/gdrive/MyDrive/data/PACS_train"
 train_style_ratios = {"art_painting": 0.8, "cartoon": 0.1, "photo": 0.1, "sketch": 0.0}
 val_style_ratios = {"art_painting": 0.2, "cartoon": 0.1, "photo": 0.1, "sketch": 0.6}
 test_style_ratios = {"art_painting": 0.0, "cartoon": 0.0, "photo": 0.0, "sketch": 1.0}
-
+styles = ["art_painting", "cartoon", "photo", "sketch"]
 
 def copyd(inputdir, outputdir, ratios):
     # 创建输出目录
@@ -16,7 +16,7 @@ def copyd(inputdir, outputdir, ratios):
         os.makedirs(output_dir)
 
     # 遍历每个标签文件夹，并将符合比例的照片复制到输出目录中
-    for style in ratios:
+    for style in styles:
         # 获取当前风格的目录和比例
         print("Copying {}...".format(style))
         style_dir = os.path.join(input_dir, style)
