@@ -3,8 +3,8 @@ import shutil
 import random
 
 # 定义输入输出目录和各个风格的比例
-input_dir = "/path/to/pacs/dataset"
-output_dir = "/path/to/mixed/pacs/dataset"
+input_dir = "/content/gdrive/MyDrive/data/PACS_test_1_pic/PACS"
+output_dir = "/content/gdrive/MyDrive/data/PACS_train"
 train_style_ratios = {"art_painting": 0.8, "cartoon": 0.1, "photo": 0.1, "sketch": 0.0}
 val_style_ratios = {"art_painting": 0.2, "cartoon": 0.1, "photo": 0.1, "sketch": 0.6}
 test_style_ratios = {"art_painting": 0.0, "cartoon": 0.0, "photo": 0.0, "sketch": 1.0}
