@@ -47,13 +47,13 @@ def copyd(inputdir, outputdir, ratios):
             print("Finished copying {} of {}, {} photos copied.".format(label, style, select_count))
         print("Finished copying {}.\n".format(style))
 # 复制train数据集
-print("Copying train data...")
+print("-----------------------------\nCopying train data...")
 train_output_dir = os.path.join(output_dir, "train")
 copyd(input_dir, train_output_dir, train_style_ratios)
-print("Copying val data...")
+print("-----------------------------\nCopying val data...")
 val_output_dir = os.path.join(output_dir, "val")
 copyd(input_dir, val_output_dir, val_style_ratios)
-print("Copying test data...")
+print("-----------------------------\nCopying test data...")
 test_output_dir = os.path.join(output_dir, "test")
 copyd(input_dir, test_output_dir, test_style_ratios)
 
