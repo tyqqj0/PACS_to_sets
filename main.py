@@ -38,7 +38,7 @@ def copyd(inputdir, outputdir, ratios):
             # 将选中的照片复制到输出目录中
             for photo_name in selected_photos:
                 i += 1
-                if(i % 10 == 0):
+                if(i % 100 == 0):
                     print("Copying {}...".format(i))
                 photo_path = os.path.join(label_dir, photo_name)
                 output_photo_path = os.path.join(output_label_dir, photo_name)
