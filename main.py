@@ -39,12 +39,12 @@ def copyd(inputdir, outputdir, ratios):
             # 将选中的照片复制到输出目录中
             for photo_name in selected_photos:
                 i += 1
-                if(i % 100 == 0):
-                    print("Copying {}...".format(i))
+                # if(i % 100 == 0):
+                    # print("Copying {}...".format(i))
                 photo_path = os.path.join(label_dir, photo_name)
                 output_photo_path = os.path.join(output_label_dir, photo_name)
                 shutil.copy(photo_path, output_photo_path)
-            print("Copy {} imgs".format(i))
+            print("Finished copying {} of {}, {} photos copied.".format(label, style, select_count))
 # 复制train数据集
 print("Copying train data...")
 train_output_dir = os.path.join(output_dir, "train")
