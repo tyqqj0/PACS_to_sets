@@ -25,7 +25,7 @@ def copyd(inputdir, outputdir, ratios):
 
         # 遍历每个标签文件夹
         for label in os.listdir(style_dir):
-            print("Copying {} of {}...".format(label, style))
+            print("Copying {} in style {}...".format(label, style))
             label_dir = os.path.join(style_dir, label)
             output_label_dir = os.path.join(outputdir, label)
             if not os.path.exists(output_label_dir):
@@ -45,6 +45,7 @@ def copyd(inputdir, outputdir, ratios):
                 output_photo_path = os.path.join(output_label_dir, photo_name)
                 shutil.copy(photo_path, output_photo_path)
             print("Finished copying {} of {}, {} photos copied.".format(label, style, select_count))
+        print("Finished copying {}.\n".format(style))
 # 复制train数据集
 print("Copying train data...")
 train_output_dir = os.path.join(output_dir, "train")
