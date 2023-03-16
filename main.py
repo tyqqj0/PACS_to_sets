@@ -24,7 +24,7 @@ def copyd(inputdir, outputdir, ratios):
 
         # 遍历每个标签文件夹
         for label in os.listdir(style_dir):
-            print("Copying {}...".format(label))
+            print("Copying {} of {}...".format(label, style))
             label_dir = os.path.join(style_dir, label)
             output_label_dir = os.path.join(output_dir, label)
             if not os.path.exists(output_label_dir):
