@@ -34,12 +34,23 @@ test_style_ratios = {"art_painting": test_style_amount["art_painting"] / art_pai
 # test_style_ratios = {"art_painting": 0.0, "cartoon": 0.0, "photo": 0.0, "sketch": 1.0}
 styles = ["art_painting", "cartoon", "photo", "sketch"]
 
+######################################### 是否需要清空输出目录 #########################################
+# 清空输出目录
+weather_clear = True
+
 
 def copyd(inputdir, outputdir, ratios):
     # 创建输出目录
     if not os.path.exists(outputdir):
         print("\nCreat {}...\n".format(outputdir))
         os.makedirs(outputdir)
+
+    if weather_clear:
+        # 清空输出目录
+        print("\nClear {}...\n".format(outputdir))
+        for label in os.listdir(outputdir):
+            label_dir = os.path.join(outputdir, label)
+            shutil.rmtree(label_dir)
 
     # 遍历每个标签文件夹，并将符合比例的照片复制到输出目录中
     for style in styles:
@@ -86,7 +97,6 @@ print("-----------------------------\nCopying val data...")
 
 print("-----------------------------\nCopying test data...")
 copyd(input_dir, test_output_dir, test_style_ratios)
-
 
 # 生成train.txt
 train_txt_path = os.path.join(output_dir, "train.txt")
