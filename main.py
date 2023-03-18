@@ -3,14 +3,24 @@ import shutil
 import random
 
 # 定义输入输出目录和各个风格的比例
+
+# Art painting: 2048
+# Sketch: 3929
+# Photo: 1670
+# Cartoon: 2344
+# Art painting: 2048 Cartoon: 678 Photo: 678 Sketch: 784
+# Sketch: 3929 Art painting: 1217 Cartoon: 1238 Photo: 331
+# Photo: 1670 Art painting: 551 Sketch: 538 Cartoon: 466
+# Cartoon: 2344 Photo: 776 Sketch: 761 Art painting: 407
 input_dir = "/content/gdrive/MyDrive/data/PACS_test_1_pic/PACS"
 output_dir = "/content/gdrive/MyDrive/data/PACS_train"
-train_style_ratios = {"art_painting": 0.8, "cartoon": 0.1, "photo": 0.1, "sketch": 0.0}
-val_style_ratios = {"art_painting": 0.2, "cartoon": 0.1, "photo": 0.1, "sketch": 0.6}
-test_style_ratios = {"art_painting": 0.0, "cartoon": 0.0, "photo": 0.0, "sketch": 1.0}
+train_style_amount = {"art_painting": 2048, "cartoon": 678, "photo": 678, "sketch": 0}
+val_style_amount = {"art_painting": 678, "cartoon": 678, "photo": 678, "sketch": 678}
+test_style_amount = {"art_painting": 0.0, "cartoon": 0.0, "photo": 0.0, "sketch": 784}
 styles = ["art_painting", "cartoon", "photo", "sketch"]
 
-def copyd(inputdir, outputdir, ratios):
+
+def copyd(inputdir, outputdir, amount):
     # 创建输出目录
     if not os.path.exists(outputdir):
         print("\nCreat {}...\n".format(outputdir))
@@ -21,7 +31,7 @@ def copyd(inputdir, outputdir, ratios):
         # 获取当前风格的目录和比例
         print("Copying {}...".format(style))
         style_dir = os.path.join(input_dir, style)
-        style_ratio = ratios[style]
+        style_amount = amount[style]
 
         # 遍历每个标签文件夹
         for label in os.listdir(style_dir):
@@ -33,29 +43,35 @@ def copyd(inputdir, outputdir, ratios):
 
             # 遍历当前标签文件夹下的所有照片，并按照比例随机选择
             photo_list = os.listdir(label_dir)
-            select_count = int(len(photo_list) * style_ratio)
+            select_count = amount
+            if select_count == -1:
+                select_count = len(photo_list)
+            if select_count > len(photo_list):
+                select_count = len(photo_list)
             selected_photos = random.sample(photo_list, select_count)
             i = 0
             # 将选中的照片复制到输出目录中
             for photo_name in selected_photos:
                 i += 1
                 # if(i % 100 == 0):
-                    # print("Copying {}...".format(i))
+                # print("Copying {}...".format(i))
                 photo_path = os.path.join(label_dir, photo_name)
                 output_photo_path = os.path.join(output_label_dir, photo_name)
                 shutil.copy(photo_path, output_photo_path)
             print("Finished copying {} of {}, {} photos copied.".format(label, style, select_count))
         print("Finished copying {}.\n".format(style))
+
+
 # 复制train数据集
 print("-----------------------------\nCopying train data...")
 train_output_dir = os.path.join(output_dir, "train")
-copyd(input_dir, train_output_dir, train_style_ratios)
+copyd(input_dir, train_output_dir, train_style_amount)
 print("-----------------------------\nCopying val data...")
 val_output_dir = os.path.join(output_dir, "val")
-copyd(input_dir, val_output_dir, val_style_ratios)
+copyd(input_dir, val_output_dir, val_style_amount)
 print("-----------------------------\nCopying test data...")
 test_output_dir = os.path.join(output_dir, "test")
-copyd(input_dir, test_output_dir, test_style_ratios)
+copyd(input_dir, test_output_dir, test_style_amount)
 
 # 生成train.txt
 train_txt_path = os.path.join(output_dir, "train.txt")
