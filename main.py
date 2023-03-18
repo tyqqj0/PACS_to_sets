@@ -47,6 +47,7 @@ def copyd(inputdir, outputdir, ratios):
         print("Copying {}...".format(style))
         style_dir = os.path.join(input_dir, style)
         style_ratio = ratios[style]
+        print("Ratio: {}".format(style_ratio))
 
         # 遍历每个标签文件夹
         for label in os.listdir(style_dir):
