@@ -43,7 +43,7 @@ def copyd(inputdir, outputdir, amount):
 
             # 遍历当前标签文件夹下的所有照片，并按照比例随机选择
             photo_list = os.listdir(label_dir)
-            select_count = amount
+            select_count = style_amount
             if select_count == -1:
                 select_count = len(photo_list)
             if select_count > len(photo_list):
